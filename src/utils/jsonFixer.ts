@@ -1,3 +1,5 @@
+// src/utils/jsonFixer.ts
+
 /* -------------------------------------------------------------------------- */
 /*                        JSON PARSING & FIXING                               */
 /* -------------------------------------------------------------------------- */
@@ -32,7 +34,7 @@ export const parseAIResponse = (raw: string): any | null => {
 /**
  * Extract text content from Gemini API response
  */
-export const extractTextFromGeminiResponse = ( any): string => {
+export const extractTextFromGeminiResponse = (data: any): string => { // Fixed: Added 'data' as parameter name and typed it as 'any'
   const parts = data?.candidates?.[0]?.content?.parts;
   if (!Array.isArray(parts)) return '';
   

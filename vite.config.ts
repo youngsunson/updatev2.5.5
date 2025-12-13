@@ -61,7 +61,7 @@ function getCertificates() {
   return false;
 }
 
-// https://vitejs.dev/config/  
+// https://vitejs.dev/config/    
 export default defineConfig({
   plugins: [
     react(),
@@ -110,5 +110,7 @@ export default defineConfig({
     host: 'localhost',
     https: getCertificates() || undefined,
     // Removed CORS header for Office Add-in security
+    // Explicitly set CORS to false to prevent esbuild from setting 'Access-Control-Allow-Origin: *'
+    cors: false 
   }
 });

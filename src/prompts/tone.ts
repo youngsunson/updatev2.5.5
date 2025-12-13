@@ -1,7 +1,5 @@
 // src/prompts/tone.ts
 
-import type { ToneSuggestion } from '@/types';
-
 /**
  * Tone Instructions (English Logic for better AI understanding)
  */

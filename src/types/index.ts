@@ -1,8 +1,9 @@
+// src/types/index.ts
 /* -------------------------------------------------------------------------- */
 /*                                TYPES                                       */
 /* -------------------------------------------------------------------------- */
 
-export type DocType = 'generic' | 'academic' | 'official' | 'marketing' | 'social';
+// export type DocType = 'generic' | 'academic' | 'official' | 'marketing' | 'social'; // <-- এই লাইনটি মুছে ফেলুন
 
 export interface Correction {
   wrong: string;
@@ -73,13 +74,17 @@ export type ViewFilter = 'all' | 'spelling' | 'punctuation';
 
 export type ModalType = 'none' | 'settings' | 'instructions' | 'tone' | 'style' | 'doctype' | 'mainMenu';
 
+// DocTypeConfig এ নতুন প্রপার্টিগুলো যোগ করি
 export interface DocTypeConfig {
   label: string;
   description: string;
   defaultTone: string;
-  mainHint: string;
-  contentHint: string;
+  roleInstruction: string; // Add this
+  checkFocus: string;      // Add this
 }
+
+// DocType এখন src/prompts/core.ts থেকে ইমপোর্ট করা হবে। এখানে ডিক্লেয়ার করা যাবে না।
+// export type DocType = 'generic' | 'academic' | 'official' | 'marketing' | 'social'; // <-- এই লাইনটি মুছে ফেলুন যদি আগে থাকে
 
 export interface Stats {
   totalWords: number;

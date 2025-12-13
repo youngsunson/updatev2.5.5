@@ -1,5 +1,6 @@
+// src/services/api.ts
 import { parseAIResponse, extractTextFromGeminiResponse } from '@/utils/jsonFixer';
-import type { Correction, ToneSuggestion, StyleSuggestion, PunctuationIssue, EuphonyImprovement, ContentAnalysis, StyleMixing } from '@/types';
+// import type { Correction, ToneSuggestion, StyleSuggestion, PunctuationIssue, EuphonyImprovement, ContentAnalysis, StyleMixing } from '@/types'; // <-- এই লাইনটি মুছে ফেলুন
 
 interface CallGeminiOptions {
   temperature?: number;

@@ -58,16 +58,7 @@ export const SuggestionCard: React.FC<SuggestionCardProps> = ({ type, data, onDi
     }
   };
 
-  const getHighlightColor = () => {
-    switch (type) {
-      case 'spelling': return '#fee2e2';
-      case 'tone': return '#fef3c7';
-      case 'style': return '#ccfbf1';
-      case 'punctuation': return '#ffedd5';
-      case 'euphony': return '#fce7f3';
-      default: return '#e0e0e0';
-    }
-  };
+  // Fixed: Remove unused function 'getHighlightColor'
 
   const handleMouseEnter = () => {
     onHighlight();

@@ -13,10 +13,10 @@ import { buildTonePrompt, getToneName, TONE_OPTIONS } from '@/prompts/tone';
 import { buildStylePrompt, STYLE_OPTIONS } from '@/prompts/style';
 import {
   buildMainPrompt,
-  DOC_TYPE_CONFIG,
+  DOC_TYPE_CONFIG, // Import the config object
   getDocTypeLabel,
-  DocType
-} from '@/prompts/core';
+  DocType // Import the type - now it should be correctly exported from core.ts
+} from '@/prompts/core'; // Assuming these are in the same file
 import type {
   Correction,
   ToneSuggestion,
@@ -194,7 +194,7 @@ export const useBhashaMitra = () => {
   };
 
   const analyzeContentLogic = async (text: string) => {
-    const cfg = DOC_TYPE_CONFIG[docType];
+    const cfg = DOC_TYPE_CONFIG[docType]; // Fixed: This should work now as docType is a state variable of type DocType and DocTypeConfig has the required properties
     const prompt = `
 Role: ${cfg.roleInstruction}
 Task: Analyze the content structure briefly.
@@ -252,9 +252,10 @@ OUTPUT JSON:
       setLoadingText('হাইলাইট করা হচ্ছে...');
       const highlightItems: Array<{ text: string; color: string; position?: number }> = [];
       
-      (spellingResult || []).forEach(i => highlightItems.push({ text: i.wrong, color: '#fee2e2', position: i.position }));
-      (toneResult || []).forEach(i => highlightItems.push({ text: i.current, color: '#fef3c7', position: i.position }));
-      (styleResult || []).forEach(i => highlightItems.push({ text: i.current, color: '#ccfbf1', position: i.position }));
+      // Fixed: Added type annotation to 'i' in map functions
+      (spellingResult || []).forEach((i: Correction) => highlightItems.push({ text: i.wrong, color: '#fee2e2', position: i.position }));
+      (toneResult || []).forEach((i: ToneSuggestion) => highlightItems.push({ text: i.current, color: '#fef3c7', position: i.position }));
+      (styleResult || []).forEach((i: StyleSuggestion) => highlightItems.push({ text: i.current, color: '#ccfbf1', position: i.position }));
 
       if (highlightItems.length > 0) {
         await highlightMultipleInWord(highlightItems);
@@ -278,11 +279,11 @@ OUTPUT JSON:
   return {
     // State
     apiKey,
-    setApiKey,
+    setApiKey, // Fixed: Add setter
     selectedModel,
-    setSelectedModel,
+    setSelectedModel, // Fixed: Add setter
     docType,
-    setDocType,
+    setDocType, // Fixed: Add setter
     isLoading,
     loadingText,
     message,
@@ -292,9 +293,9 @@ OUTPUT JSON:
     setViewFilter,
     collapsedSections,
     selectedTone,
-    setSelectedTone,
+    setSelectedTone, // Fixed: Add setter
     selectedStyle,
-    setSelectedStyle,
+    setSelectedStyle, // Fixed: Add setter
     corrections,
     toneSuggestions,
     styleSuggestions,
@@ -317,6 +318,7 @@ OUTPUT JSON:
     getToneName,
     getDocTypeLabel,
     TONE_OPTIONS,
-    STYLE_OPTIONS
+    STYLE_OPTIONS,
+    DOC_TYPE_CONFIG // Fixed: Add DOC_TYPE_CONFIG
   };
 };

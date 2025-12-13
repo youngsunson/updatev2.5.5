@@ -7,8 +7,11 @@ function App() {
   const {
     // State
     apiKey,
+    setApiKey, // Fixed: Add setter
     selectedModel,
+    setSelectedModel, // Fixed: Add setter
     docType,
+    setDocType, // Fixed: Add setter
     isLoading,
     loadingText,
     message,
@@ -18,7 +21,9 @@ function App() {
     setViewFilter,
     collapsedSections,
     selectedTone,
+    setSelectedTone, // Fixed: Add setter
     selectedStyle,
+    setSelectedStyle, // Fixed: Add setter
     corrections,
     toneSuggestions,
     styleSuggestions,
@@ -41,11 +46,12 @@ function App() {
     getToneName,
     getDocTypeLabel,
     TONE_OPTIONS,
-    STYLE_OPTIONS
+    STYLE_OPTIONS,
+    DOC_TYPE_CONFIG // Fixed: Add DOC_TYPE_CONFIG
   } = useBhashaMitra();
 
   // --- Render Helpers ---
-  const renderSectionHeader = (title: string, key: ReturnType<typeof shouldShowSection> extends true ? any : never, badgeContent?: React.ReactNode) => (
+  const renderSectionHeader = (title: string, key: keyof typeof collapsedSections, badgeContent?: React.ReactNode) => (
     <div className="section-header">
       <h3>{title}</h3>
       {badgeContent && <span className="section-badge">{badgeContent}</span>}
@@ -89,17 +95,17 @@ function App() {
         <div className="selection-display">
           {selectedTone && (
             <span className="selection-tag tone-tag">
-              {getToneName(selectedTone)} <button onClick={() => setSelectedTone('')}>✕</button>
+              {getToneName(selectedTone)} <button onClick={() => setSelectedTone('')}>✕</button> {/* Fixed: Use setter */}
             </span>
           )}
           {selectedStyle !== 'none' && (
             <span className="selection-tag style-tag">
-              {selectedStyle === 'sadhu' ? '📜 সাধু' : '💬 চলিত'} <button onClick={() => setSelectedStyle('none')}>✕</button>
+              {selectedStyle === 'sadhu' ? '📜 সাধু' : '💬 চলিত'} <button onClick={() => setSelectedStyle('none')}>✕</button> {/* Fixed: Use setter */}
             </span>
           )}
           {docType && (
             <span className="selection-tag doc-type-tag">
-              📂 {getDocTypeLabel(docType)} <button onClick={() => setDocType('generic')}>✕</button>
+              📂 {getDocTypeLabel(docType)} <button onClick={() => setDocType('generic')}>✕</button> {/* Fixed: Use setter */}
             </span>
           )}
         </div>
@@ -312,11 +318,11 @@ function App() {
               <input
                 type="password"
                 value={apiKey}
-                onChange={e => setApiKey(e.target.value)}
+                onChange={e => setApiKey(e.target.value)} // Fixed: Use setter
                 placeholder="API Key"
               />
               <label>🤖 AI Model</label>
-              <select value={selectedModel} onChange={e => setSelectedModel(e.target.value)}>
+              <select value={selectedModel} onChange={e => setSelectedModel(e.target.value)}> // Fixed: Use setter
                 <option value="gemini-2.5-flash">Gemini 2.5 Flash</option>
                 <option value="gemini-2.5-flash-lite">Gemini 2.5 Flash Lite</option>
                 <option value="gemini-2.0-flash">Gemini 2.0 Flash</option>
@@ -349,7 +355,7 @@ function App() {
                 <div
                   key={opt.id}
                   className={`option-item ${selectedTone === opt.id ? 'selected' : ''}`}
-                  onClick={() => { setSelectedTone(opt.id); setActiveModal('none'); }}
+                  onClick={() => { setSelectedTone(opt.id); setActiveModal('none'); }} // Fixed: Use setter
                 >
                   <div className="opt-icon">{opt.icon}</div>
                   <div>
@@ -373,7 +379,7 @@ function App() {
                 <div
                   key={opt.id}
                   className={`option-item ${selectedStyle === opt.id ? 'selected' : ''}`}
-                  onClick={() => { setSelectedStyle(opt.id); setActiveModal('none'); }}
+                  onClick={() => { setSelectedStyle(opt.id); setActiveModal('none'); }} // Fixed: Use setter
                 >
                   <div className="opt-icon">{opt.icon}</div>
                   <div>
@@ -397,7 +403,7 @@ function App() {
                 <div
                   key={dt}
                   className={`option-item ${docType === dt ? 'selected' : ''}`}
-                  onClick={() => { setDocType(dt); setActiveModal('none'); }}
+                  onClick={() => { setDocType(dt); setActiveModal('none'); }} // Fixed: Use setter
                 >
                   <div className="opt-icon">📂</div>
                   <div>

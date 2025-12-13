@@ -1,6 +1,5 @@
 // src/utils/word.ts
-
-import type { Correction, ToneSuggestion, StyleSuggestion, EuphonyImprovement, PunctuationIssue } from '@/types';
+// import type { Correction, ToneSuggestion, StyleSuggestion, EuphonyImprovement, PunctuationIssue } from '@/types'; // <-- এই লাইনটি মুছে ফেলুন
 
 /**
  * Word ডকুমেন্ট থেকে টেক্সট পড়ার ফাংশন

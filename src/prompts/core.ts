@@ -1,19 +1,8 @@
 // src/prompts/core.ts
+import type { DocTypeConfig } from '@/types'; // Import the type
 
-import type { DocType } from '@/types';
-
-/**
- * ডকুমেন্ট টাইপ কনফিগ ইন্টারফেস
- * - label/description: UI তে দেখানোর জন্য (বাংলা)
- * - roleInstruction: AI এর জন্য ইনস্ট্রাকশন (ইংরেজি - ফাস্ট প্রসেসিং এর জন্য)
- */
-export interface DocTypeConfig {
-  label: string;
-  description: string;
-  defaultTone: string; // UI selection help
-  roleInstruction: string; // AI Instruction (English)
-  checkFocus: string; // Specific focus area (English)
-}
+// DocType এখানে ডিক্লেয়ার করি এবং এক্সপোর্ট করি
+export type DocType = 'generic' | 'academic' | 'official' | 'marketing' | 'social';
 
 /**
  * ডকুমেন্ট টাইপ কনফিগারেশন (Hybrid Approach)
